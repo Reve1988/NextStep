@@ -1,31 +1,22 @@
 package com.next.step.first;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by giwoong.Kim on 2016. 10. 10..
  */
 public class CalculatorTest {
-    public static void main(String[] args) {
+    @Test
+    public void add() {
         Calculator calculator = new Calculator();
-
-        add(calculator);
-        subtract(calculator);
-        multiply(calculator);
-        divide(calculator);
+        assertEquals(9, calculator.add(6, 3));
     }
 
-    private static void divide(Calculator calculator) {
-        System.out.println(calculator.add(3, 4));
-    }
-
-    private static void multiply(Calculator calculator) {
-        System.out.println(calculator.subtract(5, 4));
-    }
-
-    private static void subtract(Calculator calculator) {
-        System.out.println(calculator.multiply(2, 6));
-    }
-
-    private static void add(Calculator calculator) {
-        System.out.println(calculator.divide(8, 4));
+    @Test
+    public void subtract() {
+        Calculator calculator = new Calculator();
+        assertEquals(3, calculator.subtract(6, 3));
     }
 }
