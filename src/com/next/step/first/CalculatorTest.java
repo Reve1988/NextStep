@@ -1,5 +1,6 @@
 package com.next.step.first;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -8,7 +9,12 @@ import static org.junit.Assert.assertEquals;
  * Created by giwoong.Kim on 2016. 10. 10..
  */
 public class CalculatorTest {
-    private Calculator calculator = new Calculator();
+    private Calculator calculator;
+
+    @Before
+    public void setup() {
+        calculator = new Calculator();
+    }
 
     @Test
     public void add() {
