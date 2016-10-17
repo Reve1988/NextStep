@@ -7,28 +7,55 @@ import java.util.regex.Pattern;
  * Created by giwoong.Kim on 2016. 10. 10..
  */
 public class StringCalculator {
-    int add(String text) {
-        if (text == null || text.trim().equals("")) {
+    public static final String DEFAULT_DELIMITER = ",|:";
+
+    public int add(String text) {
+        if (isBlank(text)) {
             return 0;
         }
 
-        String delimeter = ",|:";
+        return sum(toInts(split(text)));
+    }
 
+    private boolean isBlank(String text) {
+        return text == null || text.isEmpty();
+    }
+
+    private String[] split(String text) {
         Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
         if (matcher.find()) {
-            delimeter = matcher.group(1);
-            text = matcher.group(2);
+            String customDelimeter = matcher.group(1);
+            return matcher.group(2).split(customDelimeter);
         }
 
-        String[] tokens = text.split(delimeter);
-        int sum = 0;
-        for (String token : tokens) {
-            int number = Integer.parseInt(token);
-            if (number < 0) {
-                throw new RuntimeException("Number is lower than zero" + number);
-            }
+        return text.split(DEFAULT_DELIMITER);
+    }
 
-            sum += number;
+    private int[] toInts(String[] values) {
+        int[] numbers = new int[values.length];
+
+        for (int i = 0; i < values.length; i++) {
+            numbers[i] = toPositive(values[i]);
+        }
+
+        return numbers;
+    }
+
+    private int toPositive(String value) {
+        int number = Integer.parseInt(value);
+
+        if (number < 0) {
+            throw new RuntimeException();
+        }
+
+        return number;
+    }
+
+    private int sum(int[] values) {
+        int sum = 0;
+
+        for (int value : values) {
+            sum += value;
         }
 
         return sum;

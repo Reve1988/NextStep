@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
  * Created by giwoong.Kim on 2016. 10. 10..
  */
 public class StringCalculatorTest {
-    StringCalculator calculator;
+    private StringCalculator calculator;
 
     @Before
     public void setup() {
@@ -44,7 +44,7 @@ public class StringCalculatorTest {
     @Test
     public void testAdd_default_delimitor_string_blank() {
         // given
-        String str = " ";
+        String str = "";
 
         // when
         int result = calculator.add(str);
